@@ -1,0 +1,24 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const helper_1 = require("../lib/helper");
+const components_1 = __importDefault(require("../components"));
+const router = (0, express_1.Router)();
+const { success } = helper_1.ResponseHandler;
+router.get('/', (req, res) => success(res, req, 200));
+router.use('/api/auth', components_1.default.auth.routes);
+router.use('/api/user', components_1.default.user.routes);
+router.use('/api/property', components_1.default.property.routes);
+router.use('/api/property', components_1.default.property.routes);
+router.use('/api/flat', components_1.default.flat.routes);
+router.use('/api/media', components_1.default.media.routes);
+router.use('/api/complian', components_1.default.complian.routes);
+router.use('/api/comment', components_1.default.comment.routes);
+router.use('/api/service_charge', components_1.default.serviceCharge.routes);
+router.use('/api/payment', components_1.default.payment.routes);
+router.use('/api/contactAuth', components_1.default.contactAuth.routes);
+router.use('/api/contact', components_1.default.contact.routes);
+exports.default = router;

@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Controller_1 = require("./Controller");
+const helper_1 = require("../../lib/helper");
+const schema_1 = require("./schema");
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+const { ErrorHandler } = helper_1.ResponseHandler;
+router.post('/', (0, schema_1.serviceChargeSchema)(), ErrorHandler(Controller_1.ServiceChargeController.create));
+router.get('/', ErrorHandler(Controller_1.ServiceChargeController.read));
+router.delete('/:id', ErrorHandler(Controller_1.ServiceChargeController.delete));
+exports.default = router;

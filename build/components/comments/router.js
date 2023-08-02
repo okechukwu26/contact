@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const helper_1 = require("../../lib/helper");
+const Controller_1 = require("./Controller");
+const schema_1 = require("./schema");
+const middleware_1 = require("../../lib/middleware");
+const { ErrorHandler } = helper_1.ResponseHandler;
+const router = (0, express_1.Router)();
+router.post('/', middleware_1.Middleware.Authenticate(['LANDLORD', 'REALESTATE']), (0, schema_1.CommentSchema)(), ErrorHandler(Controller_1.CommentController.create));
+router.get('/', middleware_1.Middleware.Authenticate(['LANDLORD', 'REALESTATE']), ErrorHandler(Controller_1.CommentController.read));
+router.delete('/:id', middleware_1.Middleware.Authenticate(['LANDLORD', 'REALESTATE']), ErrorHandler(Controller_1.CommentController.delete));
+exports.default = router;

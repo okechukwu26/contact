@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const Controller_1 = require("./Controller");
+const schema_1 = require("./schema");
+const helper_1 = require("../../lib/helper");
+const { ErrorHandler } = helper_1.ResponseHandler;
+const router = (0, express_1.Router)();
+router.post('/landlord', (0, schema_1.signupSchema)(), ErrorHandler(Controller_1.AuthController.landlordSignUp));
+router.post('/tenant', (0, schema_1.tenantSchema)(), ErrorHandler(Controller_1.AuthController.tenantSignUp));
+router.post('/signin', (0, schema_1.signinSchema)(), ErrorHandler(Controller_1.AuthController.signin));
+router.post('/send_verification_code', ErrorHandler(Controller_1.AuthController.sendVerificationCode));
+router.post('/verify_code', ErrorHandler(Controller_1.AuthController.verifyCode));
+exports.default = router;
